@@ -21,6 +21,7 @@ This is a fork of [obra/superpowers](https://github.com/obra/superpowers) with t
 - Removed git worktree workflow (work directly in current project)
 - Removed mandatory git commit requirements after writing plans
 - Made TDD (Test-Driven Development) optional - only used when explicitly requested
+- Simplified execution: automatically proceeds with subagent-driven-development after plan creation (no user choice required)
 
 Original author: Jesse Vincent. If Superpowers has helped you, consider [sponsoring his opensource work](https://github.com/sponsors/obra).
 
