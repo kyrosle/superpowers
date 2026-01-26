@@ -8,7 +8,7 @@ It starts from the moment you fire up your coding agent. As soon as it sees that
 
 Once it's teased a spec out of the conversation, it shows it to you in chunks short enough to actually read and digest. 
 
-After you've signed off on the design, your agent puts together an implementation plan that's clear enough for an enthusiastic junior engineer with poor taste, no judgement, no project context, and an aversion to testing to follow. It emphasizes true red/green TDD, YAGNI (You Aren't Gonna Need It), and DRY. 
+After you've signed off on the design, your agent puts together an implementation plan that's clear enough for an enthusiastic junior engineer with poor taste, no judgement, and no project context to follow. It emphasizes YAGNI (You Aren't Gonna Need It) and DRY. 
 
 Next up, once you say "go", it launches a *subagent-driven-development* process, having agents work through each engineering task, inspecting and reviewing their work, and continuing forward. It's not uncommon for Claude to be able to work autonomously for a couple hours at a time without deviating from the plan you put together.
 
@@ -20,6 +20,7 @@ There's a bunch more to it, but that's the core of the system. And because the s
 This is a fork of [obra/superpowers](https://github.com/obra/superpowers) with the following modifications:
 - Removed git worktree workflow (work directly in current project)
 - Removed mandatory git commit requirements after writing plans
+- Made TDD (Test-Driven Development) optional - only used when explicitly requested
 
 Original author: Jesse Vincent. If Superpowers has helped you, consider [sponsoring his opensource work](https://github.com/sponsors/obra).
 
@@ -85,7 +86,7 @@ Fetch and follow instructions from https://raw.githubusercontent.com/kyrosle/sup
 
 3. **subagent-driven-development** or **executing-plans** - Activates with plan. Dispatches fresh subagent per task with two-stage review (spec compliance, then code quality), or executes in batches with human checkpoints.
 
-4. **test-driven-development** - Activates during implementation. Enforces RED-GREEN-REFACTOR: write failing test, watch it fail, write minimal code, watch it pass. Deletes code written before tests.
+4. **test-driven-development** (optional) - Activates when user requests tests. Follows RED-GREEN-REFACTOR cycle when explicitly requested.
 
 5. **requesting-code-review** - Activates between tasks. Reviews against plan, reports issues by severity. Critical issues block progress.
 
@@ -95,8 +96,8 @@ Fetch and follow instructions from https://raw.githubusercontent.com/kyrosle/sup
 
 ### Skills Library
 
-**Testing**
-- **test-driven-development** - RED-GREEN-REFACTOR cycle (includes testing anti-patterns reference)
+**Testing (optional)**
+- **test-driven-development** - RED-GREEN-REFACTOR cycle when explicitly requested (includes testing anti-patterns reference)
 
 **Debugging**
 - **systematic-debugging** - 4-phase root cause process (includes root-cause-tracing, defense-in-depth, condition-based-waiting techniques)

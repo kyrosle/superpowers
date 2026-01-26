@@ -7,9 +7,9 @@ description: Use when you have a spec or requirements for a multi-step task, bef
 
 ## Overview
 
-Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD.
+Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, docs they might need to check, how to verify it works. Give them the whole plan as bite-sized tasks. DRY. YAGNI.
 
-Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
+Assume they are a skilled developer, but know almost nothing about our toolset or problem domain.
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
@@ -18,10 +18,13 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 ## Bite-Sized Task Granularity
 
 **Each step is one action (2-5 minutes):**
-- "Write the failing test" - step
-- "Run it to make sure it fails" - step
-- "Implement the minimal code to make the test pass" - step
-- "Run the tests and make sure they pass" - step
+- "Implement the function/component" - step
+- "Verify it works as expected" - step
+- "Handle edge cases" - step
+
+**If tests are requested, add:**
+- "Write the test" - step
+- "Run test to verify it passes" - step
 
 ## Plan Document Header
 
@@ -49,9 +52,37 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 **Files:**
 - Create: `exact/path/to/file.py`
 - Modify: `exact/path/to/existing.py:123-145`
+
+**Step 1: Implement the component**
+
+```python
+def function(input):
+    return expected
+```
+
+**Step 2: Verify it works**
+
+Run: `python -c "from module import function; print(function(input))"`
+Expected: correct output
+```
+
+### Task Structure (with tests, if requested)
+
+```markdown
+### Task N: [Component Name]
+
+**Files:**
+- Create: `exact/path/to/file.py`
 - Test: `tests/exact/path/to/test.py`
 
-**Step 1: Write the failing test**
+**Step 1: Implement the component**
+
+```python
+def function(input):
+    return expected
+```
+
+**Step 2: Write test**
 
 ```python
 def test_specific_behavior():
@@ -59,19 +90,7 @@ def test_specific_behavior():
     assert result == expected
 ```
 
-**Step 2: Run test to verify it fails**
-
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: FAIL with "function not defined"
-
-**Step 3: Write minimal implementation**
-
-```python
-def function(input):
-    return expected
-```
-
-**Step 4: Run test to verify it passes**
+**Step 3: Run test to verify it passes**
 
 Run: `pytest tests/path/test.py::test_name -v`
 Expected: PASS
@@ -82,7 +101,8 @@ Expected: PASS
 - Complete code in plan (not "add validation")
 - Exact commands with expected output
 - Reference relevant skills with @ syntax
-- DRY, YAGNI, TDD
+- DRY, YAGNI
+- Only include tests if user requests them
 
 ## Execution Handoff
 
