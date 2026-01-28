@@ -1,5 +1,20 @@
 # Superpowers
 
+> ⚠️ **This is a fork of [obra/superpowers](https://github.com/obra/superpowers)**
+>
+> **Key differences from the original:**
+>
+> | Change | Description |
+> |--------|-------------|
+> | 🚫 **Removed git worktree workflow** | Work directly in your current project directory instead of managing separate worktrees |
+> | 🚫 **Removed mandatory git commits** | No forced commits after writing plans—commit when you're ready |
+> | ⚙️ **TDD is now optional** | Test-Driven Development only activates when explicitly requested, not by default |
+> | ⚡ **Simplified execution flow** | After plan creation, automatically proceeds with subagent-driven-development (no manual choice required) |
+>
+> Original author: **Jesse Vincent** ([obra](https://github.com/obra)). If Superpowers has helped you, consider [sponsoring his work](https://github.com/sponsors/obra).
+
+---
+
 Superpowers is a complete software development workflow for your coding agents, built on top of a set of composable "skills" and some initial instructions that make sure your agent uses them.
 
 ## How it works
@@ -13,17 +28,6 @@ After you've signed off on the design, your agent puts together an implementatio
 Next up, once you say "go", it launches a *subagent-driven-development* process, having agents work through each engineering task, inspecting and reviewing their work, and continuing forward. It's not uncommon for Claude to be able to work autonomously for a couple hours at a time without deviating from the plan you put together.
 
 There's a bunch more to it, but that's the core of the system. And because the skills trigger automatically, you don't need to do anything special. Your coding agent just has Superpowers.
-
-
-## About This Fork
-
-This is a fork of [obra/superpowers](https://github.com/obra/superpowers) with the following modifications:
-- Removed git worktree workflow (work directly in current project)
-- Removed mandatory git commit requirements after writing plans
-- Made TDD (Test-Driven Development) optional - only used when explicitly requested
-- Simplified execution: automatically proceeds with subagent-driven-development after plan creation (no user choice required)
-
-Original author: Jesse Vincent. If Superpowers has helped you, consider [sponsoring his opensource work](https://github.com/sponsors/obra).
 
 
 ## Installation
