@@ -6,10 +6,13 @@
 >
 > | Change | Description |
 > |--------|-------------|
-> | 🚫 **Removed git worktree workflow** | Work directly in your current project directory instead of managing separate worktrees |
+> | 🚫 **Removed git worktree workflow** | Work directly in your current project directory. Original requires `using-git-worktrees` before `subagent-driven-development` or `executing-plans` |
 > | 🚫 **Removed mandatory git commits** | No forced commits after writing plans—commit when you're ready |
 > | ⚙️ **TDD is now optional** | Test-Driven Development only activates when explicitly requested, not by default |
 > | ⚡ **Simplified execution flow** | After plan creation, automatically proceeds with subagent-driven-development (no manual choice required) |
+> | 🆕 **Kimi Code support** | Added installation and CLI support for [Kimi Code](https://moonshotai.github.io/kimi-cli/) |
+>
+> **Note on upstream updates:** The original project now requires explicit user consent before working on main/master branch and mandates worktree setup via `using-git-worktrees` skill. This fork intentionally omits these restrictions for a simpler workflow.
 >
 > Original author: **Jesse Vincent** ([obra](https://github.com/obra)). If Superpowers has helped you, consider [sponsoring his work](https://github.com/sponsors/obra).
 
