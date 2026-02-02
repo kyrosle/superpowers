@@ -32,7 +32,7 @@ There's a bunch more to it, but that's the core of the system. And because the s
 
 ## Installation
 
-**Note:** Installation differs by platform. Claude Code has a built-in plugin system. Codex and OpenCode require manual setup.
+**Note:** Installation differs by platform. Claude Code has a built-in plugin system. Codex, OpenCode, and Kimi Code require manual setup.
 
 ### Claude Code (via Plugin Marketplace)
 
@@ -82,6 +82,16 @@ Fetch and follow instructions from https://raw.githubusercontent.com/kyrosle/sup
 ```
 
 **Detailed docs:** [docs/README.opencode.md](docs/README.opencode.md)
+
+### Kimi Code
+
+Tell Kimi Code:
+
+```
+Fetch and follow instructions from https://raw.githubusercontent.com/kyrosle/superpowers/refs/heads/main/.kimi/INSTALL.md
+```
+
+**Detailed docs:** [docs/README.kimi.md](docs/README.kimi.md)
 
 ## The Basic Workflow
 
