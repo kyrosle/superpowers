@@ -1,0 +1,14 @@
+version: 1
+agent:
+  extend: ../superpowers.yaml
+  name: tdd-subagent
+  system_prompt_path: ../prompts/tdd.md
+
+  system_prompt_args:
+    ROLE_CONTEXT: |
+      你现在作为 TDD 子 Agent 运行。
+      你的任务是遵循 RED-GREEN-REFACTOR 循环进行测试驱动开发。
+      完成后将实现结果返回给主 Agent。
+
+  exclude_tools:
+    - "kimi_cli.tools.multiagent:Task"

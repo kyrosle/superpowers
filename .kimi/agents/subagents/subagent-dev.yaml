@@ -1,0 +1,14 @@
+version: 1
+agent:
+  extend: ../superpowers.yaml
+  name: subagent-dev-subagent
+  system_prompt_path: ../prompts/subagent-dev.md
+
+  system_prompt_args:
+    ROLE_CONTEXT: |
+      你现在作为 subagent-dev 子 Agent 运行。
+      你的任务是协调每任务一个子 Agent 的执行流程，并进行双阶段审查。
+      完成后将执行结果返回给主 Agent。
+
+  exclude_tools:
+    - "kimi_cli.tools.multiagent:Task"

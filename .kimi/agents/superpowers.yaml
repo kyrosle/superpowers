@@ -1,0 +1,41 @@
+version: 1
+agent:
+  extend: default
+  name: superpowers
+  system_prompt_path: ./system-prompt.md
+
+  system_prompt_args:
+    SUPERPOWERS_VERSION: "4.0.3"
+
+  subagents:
+    brainstorming:
+      path: ./subagents/brainstorming.yaml
+      description: "交互式设计探索，在编码前通过对话完善想法和需求"
+
+    debugging:
+      path: ./subagents/debugging.yaml
+      description: "系统化调试，4阶段根因分析（收集→假设→验证→修复）"
+
+    planning:
+      path: ./subagents/planning.yaml
+      description: "编写详细实现计划，将需求转化为可执行步骤"
+
+    verification:
+      path: ./subagents/verification.yaml
+      description: "完成前验证，确保工作真正完成而非假设完成"
+
+    execution:
+      path: ./subagents/execution.yaml
+      description: "执行实现计划，按步骤推进并在检查点审查"
+
+    code-review:
+      path: ./subagents/code-review.yaml
+      description: "请求代码审查，验证实现符合需求"
+
+    tdd:
+      path: ./subagents/tdd.yaml
+      description: "测试驱动开发，RED-GREEN-REFACTOR 循环（仅在明确请求时使用）"
+
+    subagent-dev:
+      path: ./subagents/subagent-dev.yaml
+      description: "子 Agent 驱动开发，每个任务使用新鲜子 Agent 执行并双阶段审查"

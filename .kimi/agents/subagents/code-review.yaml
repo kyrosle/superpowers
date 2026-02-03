@@ -1,0 +1,14 @@
+version: 1
+agent:
+  extend: ../superpowers.yaml
+  name: code-review-subagent
+  system_prompt_path: ../prompts/code-review.md
+
+  system_prompt_args:
+    ROLE_CONTEXT: |
+      你现在作为 code-review 子 Agent 运行。
+      你的任务是请求代码审查，验证实现符合需求。
+      完成后将审查结果返回给主 Agent。
+
+  exclude_tools:
+    - "kimi_cli.tools.multiagent:Task"

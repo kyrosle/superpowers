@@ -1,0 +1,14 @@
+version: 1
+agent:
+  extend: ../superpowers.yaml
+  name: planning-subagent
+  system_prompt_path: ../prompts/planning.md
+
+  system_prompt_args:
+    ROLE_CONTEXT: |
+      你现在作为 planning 子 Agent 运行。
+      你的任务是编写详细的实现计划，假设执行者对代码库零上下文。
+      完成后将计划返回给主 Agent。
+
+  exclude_tools:
+    - "kimi_cli.tools.multiagent:Task"

@@ -1,0 +1,14 @@
+version: 1
+agent:
+  extend: ../superpowers.yaml
+  name: debugging-subagent
+  system_prompt_path: ../prompts/debugging.md
+
+  system_prompt_args:
+    ROLE_CONTEXT: |
+      你现在作为 debugging 子 Agent 运行。
+      你的任务是系统化地找到问题根因，而不是猜测性修复。
+      完成后将诊断结果和修复方案返回给主 Agent。
+
+  exclude_tools:
+    - "kimi_cli.tools.multiagent:Task"

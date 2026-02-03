@@ -1,0 +1,14 @@
+version: 1
+agent:
+  extend: ../superpowers.yaml
+  name: execution-subagent
+  system_prompt_path: ../prompts/execution.md
+
+  system_prompt_args:
+    ROLE_CONTEXT: |
+      你现在作为 execution 子 Agent 运行。
+      你的任务是执行实现计划，按步骤推进并在检查点报告。
+      完成后将执行结果返回给主 Agent。
+
+  exclude_tools:
+    - "kimi_cli.tools.multiagent:Task"

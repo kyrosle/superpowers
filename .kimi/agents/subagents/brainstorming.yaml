@@ -1,0 +1,14 @@
+version: 1
+agent:
+  extend: ../superpowers.yaml
+  name: brainstorming-subagent
+  system_prompt_path: ../prompts/brainstorming.md
+
+  system_prompt_args:
+    ROLE_CONTEXT: |
+      你现在作为 brainstorming 子 Agent 运行。
+      你的任务是帮助用户探索和完善想法，而不是直接实现。
+      完成后将设计方案返回给主 Agent。
+
+  exclude_tools:
+    - "kimi_cli.tools.multiagent:Task"

@@ -1,0 +1,14 @@
+version: 1
+agent:
+  extend: ../superpowers.yaml
+  name: verification-subagent
+  system_prompt_path: ../prompts/verification.md
+
+  system_prompt_args:
+    ROLE_CONTEXT: |
+      你现在作为 verification 子 Agent 运行。
+      你的任务是验证工作真正完成，而不是假设完成。
+      完成后将验证结果返回给主 Agent。
+
+  exclude_tools:
+    - "kimi_cli.tools.multiagent:Task"

@@ -4,10 +4,14 @@ Complete guide for using Superpowers with Kimi Code CLI.
 
 ## Quick Install
 
-Tell Kimi Code:
+```bash
+curl -fsSL https://raw.githubusercontent.com/kyrosle/superpowers/main/install-kimi.sh | bash
+```
+
+Or tell Kimi Code:
 
 ```
-Fetch and follow instructions from https://raw.githubusercontent.com/kyrosle/superpowers/refs/heads/main/.kimi/INSTALL.md
+Fetch and run the install script from https://raw.githubusercontent.com/kyrosle/superpowers/main/install-kimi.sh
 ```
 
 ## Manual Installation
@@ -19,139 +23,175 @@ Fetch and follow instructions from https://raw.githubusercontent.com/kyrosle/sup
 
 ### Installation Steps
 
-#### 1. Clone Superpowers
-
+1. Clone repository:
 ```bash
-mkdir -p ~/.kimi/superpowers
-git clone https://github.com/kyrosle/superpowers.git ~/.kimi/superpowers
+git clone --depth 1 https://github.com/kyrosle/superpowers.git /tmp/superpowers
 ```
 
-#### 2. Install Bootstrap
-
-The bootstrap file is included in the repository at `.kimi/superpowers-bootstrap.md`. Kimi Code will automatically use it from the cloned location.
-
-#### 3. Verify Installation
-
-Tell Kimi Code:
-
-```
-Run ~/.kimi/superpowers/.kimi/superpowers-kimi find-skills to show available skills
+2. Copy Agent configuration:
+```bash
+mkdir -p ~/.config/agents/superpowers
+cp -r /tmp/superpowers/.kimi/agents/* ~/.config/agents/superpowers/
 ```
 
-You should see a list of available skills with descriptions.
+3. Copy Skills:
+```bash
+mkdir -p ~/.config/agents/skills
+cp -r /tmp/superpowers/.kimi/skills/* ~/.config/agents/skills/
+```
+
+4. Clean up:
+```bash
+rm -rf /tmp/superpowers
+```
 
 ## Usage
 
-### Finding Skills
-
-```
-Run ~/.kimi/superpowers/.kimi/superpowers-kimi find-skills
-```
-
-### Loading a Skill
-
-```
-Run ~/.kimi/superpowers/.kimi/superpowers-kimi use-skill superpowers:brainstorming
-```
-
-### Bootstrap All Skills
-
-```
-Run ~/.kimi/superpowers/.kimi/superpowers-kimi bootstrap
-```
-
-This loads the complete bootstrap with all skill information.
-
-### Personal Skills
-
-Create your own skills in `~/.kimi/skills/`:
+### Starting Kimi with Superpowers
 
 ```bash
-mkdir -p ~/.kimi/skills/my-skill
+kimi --agent-file ~/.config/agents/superpowers/superpowers.yaml
 ```
 
-Create `~/.kimi/skills/my-skill/SKILL.md`:
+Or create an alias (add to `~/.bashrc` or `~/.zshrc`):
 
-```markdown
----
-name: my-skill
-description: Use when [condition] - [what it does]
----
-
-# My Skill
-
-[Your skill content here]
+```bash
+alias kimi-super='kimi --agent-file ~/.config/agents/superpowers/superpowers.yaml'
+kimi-super
 ```
 
-Personal skills override superpowers skills with the same name.
+### Sub Agents
 
-## Architecture
+Superpowers provides 8 specialized sub agents that handle specific workflows:
 
-### Kimi Code CLI Tool
+| Sub Agent | When Used |
+|-----------|-----------|
+| `brainstorming` | Before creative work - new features, components, behavior changes |
+| `debugging` | When encountering bugs, test failures, unexpected behavior |
+| `planning` | When you have requirements/specs for multi-step tasks |
+| `execution` | When you have a written plan to execute |
+| `verification` | Before claiming work is complete, before commits or PRs |
+| `code-review` | After completing tasks or major features |
+| `tdd` | When explicitly requesting TDD or test-first development |
+| `subagent-dev` | When executing plans with independent tasks in current session |
 
-**Location:** `~/.kimi/superpowers/.kimi/superpowers-kimi`
+The main Agent automatically dispatches to sub agents using the `Task` tool when appropriate.
 
-A Node.js CLI script that provides three commands:
-- `bootstrap` - Load complete bootstrap with all skills
-- `use-skill <name>` - Load a specific skill
-- `find-skills` - List all available skills
+### Regular Skills
 
-### Shared Core Module
+In addition to sub agents, you can use native Kimi `/skill:` commands:
 
-**Location:** `~/.kimi/superpowers/lib/skills-core.js`
-
-The Kimi Code implementation uses the shared `skills-core` module (ES module format) for skill discovery and parsing. This is the same module used by Codex and OpenCode plugins, ensuring consistent behavior across platforms.
-
-### Tool Mapping
-
-Skills written for Claude Code are adapted for Kimi Code with these mappings:
-
-- `TodoWrite` -> Update your task list
-- `Task` with subagents -> Tell user subagents aren't available, do work directly
-- `Skill` tool -> `~/.kimi/superpowers/.kimi/superpowers-kimi use-skill`
-- File operations -> Native Kimi Code tools
-
-### Skill Directories
-
-Kimi Code discovers skills through a hierarchical system:
-
-**User-level skills** (checked in priority order):
-- `~/.kimi/skills/` (personal skills take precedence)
-- `~/.kimi/superpowers/skills/` (superpowers skills)
-
-**Project-level skills**:
-- `.kimi/skills/` in your project directory
+```
+/skill:writing-skills
+/skill:receiving-code-review
+/skill:dispatching-parallel-agents
+```
 
 ## Updating
 
 ```bash
-cd ~/.kimi/superpowers
+curl -fsSL https://raw.githubusercontent.com/kyrosle/superpowers/main/update-kimi.sh | bash
+```
+
+Or manually:
+
+```bash
+cd ~/.config/agents/superpowers
 git pull
+```
+
+## Uninstalling
+
+```bash
+rm -rf ~/.config/agents/superpowers
+rm -rf ~/.config/agents/skills/writing-skills
+rm -rf ~/.config/agents/skills/receiving-code-review
+rm -rf ~/.config/agents/skills/dispatching-parallel-agents
+```
+
+## Architecture
+
+### Main Agent
+
+**Location:** `~/.config/agents/superpowers/superpowers.yaml`
+
+- Extends Kimi CLI's `default` agent
+- Injects Superpowers discipline into system prompt
+- Defines 8 sub agents with descriptions
+
+### Sub Agents
+
+**Location:** `~/.config/agents/superpowers/subagents/`
+
+Each sub agent:
+- Extends the main Superpowers agent
+- Has specialized system prompt for its workflow
+- Excludes `Task` tool to prevent nested sub agent calls
+
+### Regular Skills
+
+**Location:** `~/.config/agents/skills/`
+
+Standard Kimi skills discovered automatically:
+- `writing-skills/` - Create or edit skill files
+- `receiving-code-review/` - Handle code review feedback
+- `dispatching-parallel-agents/` - Parallel task execution
+
+## Directory Structure
+
+```
+~/.config/agents/
+├── superpowers/
+│   ├── superpowers.yaml          # Main agent config
+│   ├── system-prompt.md          # Main agent system prompt
+│   ├── subagents/                # Sub agent configs
+│   │   ├── brainstorming.yaml
+│   │   ├── debugging.yaml
+│   │   ├── planning.yaml
+│   │   ├── verification.yaml
+│   │   ├── execution.yaml
+│   │   ├── code-review.yaml
+│   │   ├── tdd.yaml
+│   │   └── subagent-dev.yaml
+│   └── prompts/                  # Sub agent prompts
+│       ├── brainstorming.md
+│       ├── debugging.md
+│       ├── planning.md
+│       ├── verification.md
+│       ├── execution.md
+│       ├── code-review.md
+│       ├── tdd.md
+│       └── subagent-dev.md
+│
+└── skills/                       # Regular skills
+    ├── writing-skills/
+    │   └── SKILL.md
+    ├── receiving-code-review/
+    │   └── SKILL.md
+    └── dispatching-parallel-agents/
+        └── SKILL.md
 ```
 
 ## Troubleshooting
 
+### Agent not found
+
+1. Verify installation: `ls ~/.config/agents/superpowers/superpowers.yaml`
+2. Check path in launch command matches actual location
+3. Try absolute path: `kimi --agent-file $HOME/.config/agents/superpowers/superpowers.yaml`
+
 ### Skills not found
 
-1. Verify installation: `ls ~/.kimi/superpowers/skills`
-2. Check CLI works: `~/.kimi/superpowers/.kimi/superpowers-kimi find-skills`
-3. Verify skills have SKILL.md files
+1. Verify skills directory: `ls ~/.config/agents/skills/`
+2. Check skills have SKILL.md files
+3. Skills are loaded automatically by Kimi CLI
 
-### CLI script not executable
+### YAML syntax errors
 
+Validate agent configuration:
 ```bash
-chmod +x ~/.kimi/superpowers/.kimi/superpowers-kimi
+python3 -c "import yaml; yaml.safe_load(open('~/.config/agents/superpowers/superpowers.yaml'))"
 ```
-
-### Node.js errors
-
-The CLI script requires Node.js. Verify:
-
-```bash
-node --version
-```
-
-Should show v14 or higher (v18+ recommended for ES module support).
 
 ## Getting Help
 
@@ -161,4 +201,4 @@ Should show v14 or higher (v18+ recommended for ES module support).
 
 ## Note
 
-Kimi Code support is experimental and may require refinement based on user feedback. If you encounter issues, please report them on GitHub.
+Kimi Code support follows Kimi CLI's native Agent architecture. The implementation uses Kimi's standard `--agent-file` parameter and skill discovery mechanisms.
