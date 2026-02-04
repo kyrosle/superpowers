@@ -1,0 +1,8 @@
+version: 1
+agent:
+  extend: default
+  name: superpowers-base
+  system_prompt_path: ./system-prompt.md
+
+  system_prompt_args:
+    SUPERPOWERS_VERSION: "4.0.3"

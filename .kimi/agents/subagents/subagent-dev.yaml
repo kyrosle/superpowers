@@ -1,6 +1,6 @@
 version: 1
 agent:
-  extend: ../superpowers.yaml
+  extend: ../superpowers-base.yaml
   name: subagent-dev-subagent
   system_prompt_path: ../prompts/subagent-dev.md
 

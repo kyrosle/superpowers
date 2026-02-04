@@ -115,9 +115,16 @@ rm -rf ~/.config/agents/skills/dispatching-parallel-agents
 
 **Location:** `~/.config/agents/superpowers/superpowers.yaml`
 
-- Extends Kimi CLI's `default` agent
+- Extends `superpowers-base.yaml`
 - Injects Superpowers discipline into system prompt
 - Defines 8 sub agents with descriptions
+
+### Base Agent
+
+**Location:** `~/.config/agents/superpowers/superpowers-base.yaml`
+
+- Extends Kimi CLI's `default` agent
+- Provides shared system prompt + args without subagent recursion
 
 ### Sub Agents
 
@@ -143,6 +150,7 @@ Standard Kimi skills discovered automatically:
 ~/.config/agents/
 ├── superpowers/
 │   ├── superpowers.yaml          # Main agent config
+│   ├── superpowers-base.yaml     # Shared base (no subagents)
 │   ├── system-prompt.md          # Main agent system prompt
 │   ├── subagents/                # Sub agent configs
 │   │   ├── brainstorming.yaml

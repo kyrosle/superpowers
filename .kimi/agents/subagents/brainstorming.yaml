@@ -1,6 +1,6 @@
 version: 1
 agent:
-  extend: ../superpowers.yaml
+  extend: ../superpowers-base.yaml
   name: brainstorming-subagent
   system_prompt_path: ../prompts/brainstorming.md
 

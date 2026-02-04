@@ -1,6 +1,6 @@
 version: 1
 agent:
-  extend: ../superpowers.yaml
+  extend: ../superpowers-base.yaml
   name: debugging-subagent
   system_prompt_path: ../prompts/debugging.md
 

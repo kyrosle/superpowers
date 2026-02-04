@@ -24,8 +24,8 @@ ${ROLE_CONTEXT}
 
 **1. 获取 git SHA：**
 ```bash
-BASE_SHA=$(git rev-parse HEAD~1)  # 或 origin/main
-HEAD_SHA=$(git rev-parse HEAD)
+BASE_SHA=$$(git rev-parse HEAD~1)  # 或 origin/main
+HEAD_SHA=$$(git rev-parse HEAD)
 ```
 
 **2. 准备审查信息：**
