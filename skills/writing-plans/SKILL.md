@@ -7,13 +7,11 @@ description: Use when you have a spec or requirements for a multi-step task, bef
 
 ## Overview
 
-Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
+Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing when it is required, docs they might need to check, and how to verify the result. Give them the whole plan as bite-sized tasks. DRY. YAGNI.
 
 Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
-
-**Context:** This should be run in a dedicated worktree (created by brainstorming skill).
 
 **Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
 - (User preferences for plan location override this default)
@@ -36,11 +34,15 @@ This structure informs the task decomposition. Each task should produce self-con
 ## Bite-Sized Task Granularity
 
 **Each step is one action (2-5 minutes):**
+- "Implement the function/component" - step
+- "Verify it works as expected" - step
+- "Handle edge cases" - step
+
+**If tests are requested or clearly required:**
 - "Write the failing test" - step
 - "Run it to make sure it fails" - step
 - "Implement the minimal code to make the test pass" - step
 - "Run the tests and make sure they pass" - step
-- "Commit" - step
 
 ## Plan Document Header
 
@@ -61,6 +63,27 @@ This structure informs the task decomposition. Each task should produce self-con
 ```
 
 ## Task Structure
+
+````markdown
+### Task N: [Component Name]
+
+**Files:**
+- Create: `exact/path/to/file.py`
+- Modify: `exact/path/to/existing.py:123-145`
+- [ ] **Step 1: Implement the component**
+
+```python
+def function(input):
+    return expected
+```
+
+- [ ] **Step 2: Verify it works**
+
+Run: `python -c "from module import function; print(function(input))"`
+Expected: correct output
+````
+
+### Task Structure (with tests, if requested)
 
 ````markdown
 ### Task N: [Component Name]
@@ -94,13 +117,6 @@ def function(input):
 
 Run: `pytest tests/path/test.py::test_name -v`
 Expected: PASS
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add tests/path/test.py src/path/file.py
-git commit -m "feat: add specific feature"
-```
 ````
 
 ## Remember
@@ -108,7 +124,8 @@ git commit -m "feat: add specific feature"
 - Complete code in plan (not "add validation")
 - Exact commands with expected output
 - Reference relevant skills with @ syntax
-- DRY, YAGNI, TDD, frequent commits
+- DRY, YAGNI
+- Only include TDD/test steps when the user explicitly wants tests or the task clearly needs them
 
 ## Plan Review Loop
 
@@ -133,7 +150,7 @@ After completing each chunk of the plan:
 
 After saving the plan:
 
-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Ready to execute?"**
+**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Starting implementation..."**
 
 **Execution path depends on harness capabilities:**
 
@@ -144,4 +161,4 @@ After saving the plan:
 
 **If harness does NOT have subagents:**
 - Execute plan in current session using superpowers:executing-plans
-- Batch execution with checkpoints for review
+- Follow the plan task-by-task and report blockers immediately

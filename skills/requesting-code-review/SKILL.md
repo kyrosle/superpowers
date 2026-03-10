@@ -23,11 +23,15 @@ Dispatch superpowers:code-reviewer subagent to catch issues before they cascade.
 
 ## How to Request
 
-**1. Get git SHAs:**
+**1. Choose a comparison range:**
+
+If the work is already committed:
 ```bash
 BASE_SHA=$(git rev-parse HEAD~1)  # or origin/main
 HEAD_SHA=$(git rev-parse HEAD)
 ```
+
+If the work is still uncommitted, either create a temporary checkpoint commit or review the current diff against the last agreed baseline. Commits are useful for review, but not mandatory for every task in this fork.
 
 **2. Dispatch code-reviewer subagent:**
 
@@ -36,8 +40,8 @@ Use Task tool with superpowers:code-reviewer type, fill template at `code-review
 **Placeholders:**
 - `{WHAT_WAS_IMPLEMENTED}` - What you just built
 - `{PLAN_OR_REQUIREMENTS}` - What it should do
-- `{BASE_SHA}` - Starting commit
-- `{HEAD_SHA}` - Ending commit
+- `{BASE_SHA}` - Starting comparison point
+- `{HEAD_SHA}` - Ending comparison point
 - `{DESCRIPTION}` - Brief summary
 
 **3. Act on feedback:**
