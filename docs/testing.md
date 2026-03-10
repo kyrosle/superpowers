@@ -60,7 +60,7 @@ The integration test verifies the `subagent-driven-development` skill correctly:
    - TodoWrite was used for tracking
    - Implementation files were created
    - Tests pass
-   - Git commits show proper workflow
+   - No extra features were added beyond the plan
 4. **Token Analysis**: Shows token usage breakdown by subagent
 
 ### Test Output
@@ -90,10 +90,7 @@ Test 6: Implementation verification...
   [PASS] test/math.test.js created
   [PASS] Tests pass
 
-Test 7: Git commit history...
-  [PASS] Multiple commits created (3 total)
-
-Test 8: No extra features added...
+Test 7: No extra features added...
   [PASS] No extra features added
 
 =========================================
@@ -260,7 +257,7 @@ python3 "$SCRIPT_DIR/analyze-token-usage.py" "$SESSION_FILE"
 3. **Grant permissions**: Use `--permission-mode bypassPermissions` and `--add-dir`
 4. **Run from plugin dir**: Skills only load when running from the superpowers directory
 5. **Show token usage**: Always include token analysis for cost visibility
-6. **Test real behavior**: Verify actual files created, tests passing, commits made
+6. **Test real behavior**: Verify actual files created, tests passing, and no unrequested behavior was added
 
 ## Session Transcript Format
 

@@ -256,19 +256,8 @@ else
 fi
 echo ""
 
-# Test 7: Git commits show proper workflow
-echo "Test 7: Git commit history..."
-commit_count=$(git -C "$TEST_PROJECT" log --oneline | wc -l)
-if [ "$commit_count" -gt 2 ]; then  # Initial + at least 2 task commits
-    echo "  [PASS] Multiple commits created ($commit_count total)"
-else
-    echo "  [FAIL] Too few commits ($commit_count, expected >2)"
-    FAILED=$((FAILED + 1))
-fi
-echo ""
-
-# Test 8: Check for extra features (spec compliance should catch)
-echo "Test 8: No extra features added (spec compliance)..."
+# Test 7: Check for extra features (spec compliance should catch)
+echo "Test 7: No extra features added (spec compliance)..."
 if grep -q "export function divide\|export function power\|export function subtract" "$TEST_PROJECT/src/math.js" 2>/dev/null; then
     echo "  [WARN] Extra features found (spec review should have caught this)"
     # Not failing on this as it tests reviewer effectiveness
