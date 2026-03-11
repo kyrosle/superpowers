@@ -92,7 +92,7 @@ Start a new session in your chosen platform and ask for something that should tr
 
 ## The Basic Workflow
 
-1. **brainstorming** - Activates before writing code. Refines rough ideas through questions, explores alternatives, presents design in sections for validation, and can optionally open the visual companion for diagrams or mockups. Saves design document.
+1. **brainstorming** - Activates before writing code. Refines rough ideas through questions, explores alternatives, presents design in sections for validation, and keeps the default flow in the terminal unless the user explicitly asks for browser-based visuals. Saves design document.
 
 2. **writing-plans** - Activates with approved design. Breaks work into bite-sized tasks (2-5 minutes each). Every task has exact file paths, complete code, verification steps.
 
@@ -113,7 +113,6 @@ Start a new session in your chosen platform and ask for something that should tr
 
 **Debugging**
 - **systematic-debugging** - 4-phase root cause process (includes root-cause-tracing, defense-in-depth, condition-based-waiting techniques)
-- **verification-before-completion** - Ensure it's actually fixed
 
 **Collaboration**
 - **brainstorming** - Socratic design refinement
