@@ -107,7 +107,7 @@ Full workflow execution test (~10-30 minutes):
   - Spec reviewer reads code independently
   - Working implementation is produced
   - Tests pass
-  - Proper git commits created
+  - No extra features added beyond the plan
 
 **What it tests:**
 - The workflow actually works end-to-end

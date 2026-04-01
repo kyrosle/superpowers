@@ -1,6 +1,6 @@
 ---
 name: test-driven-development
-description: Use when implementing any feature or bugfix, before writing implementation code
+description: Use when the user explicitly requests TDD, test-first development, or comprehensive test coverage
 ---
 
 # Test-Driven Development (TDD)
@@ -11,22 +11,21 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 **Core principle:** If you didn't watch the test fail, you don't know if it tests the right thing.
 
-**Violating the letter of the rules is violating the spirit of the rules.**
-
 ## When to Use
 
-**Always:**
-- New features
-- Bug fixes
-- Refactoring
-- Behavior changes
+**Use TDD when:**
+- The user explicitly requests TDD or test-first development
+- The user asks for comprehensive test coverage
+- You're working on critical or high-risk code where tests are essential
+- The user clearly asks for tests as part of the implementation
 
-**Exceptions (ask your human partner):**
-- Throwaway prototypes
-- Generated code
-- Configuration files
+**Skip TDD when:**
+- The user does not mention tests or test-first development
+- You're making quick prototypes or exploratory changes
+- You're editing simple configuration or documentation
+- The user explicitly says tests are not needed
 
-Thinking "skip TDD just this once"? Stop. That's rationalization.
+**If unsure:** Ask the user whether they want tests for the implementation.
 
 ## The Iron Law
 

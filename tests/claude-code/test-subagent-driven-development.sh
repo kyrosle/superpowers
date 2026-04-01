@@ -136,12 +136,12 @@ fi
 
 echo ""
 
-# Test 8: Verify worktree requirement
-echo "Test 8: Worktree requirement..."
+# Test 8: Verify no mandatory worktree prerequisite
+echo "Test 8: No mandatory worktree prerequisite..."
 
 output=$(run_claude "What workflow skills are required before using subagent-driven-development? List any prerequisites or required skills." 30)
 
-if assert_contains "$output" "using-git-worktrees\|worktree" "Mentions worktree requirement"; then
+if assert_not_contains "$output" "using-git-worktrees\|worktree" "Does not require worktree setup"; then
     : # pass
 else
     exit 1
@@ -149,12 +149,12 @@ fi
 
 echo ""
 
-# Test 9: Verify main branch warning
-echo "Test 9: Main branch red flag..."
+# Test 9: Verify TDD is optional
+echo "Test 9: Optional TDD..."
 
-output=$(run_claude "In subagent-driven-development, is it okay to start implementation directly on the main branch?" 30)
+output=$(run_claude "In subagent-driven-development, do subagents have to use TDD for every task, or only when the user explicitly wants tests?" 30)
 
-if assert_contains "$output" "worktree\|feature.*branch\|not.*main\|never.*main\|avoid.*main\|don't.*main\|consent\|permission" "Warns against main branch"; then
+if assert_contains "$output" "optional\|explicit\|requested\|when.*tests\|if.*user" "States TDD is conditional"; then
     : # pass
 else
     exit 1
