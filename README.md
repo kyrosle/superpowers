@@ -1,5 +1,7 @@
 # Superpowers
 
+中文说明: [README.zh-CN.md](README.zh-CN.md)
+
 > This is a fork of [obra/superpowers](https://github.com/obra/superpowers).
 >
 > Fork goals:
