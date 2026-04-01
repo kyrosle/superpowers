@@ -35,7 +35,7 @@ cd tests/claude-code
 
 - Must run from the **superpowers plugin directory** (not from temp directories)
 - Claude Code must be installed and available as `claude` command
-- Local dev marketplace must be enabled: `"superpowers@superpowers-dev": true` in `~/.claude/settings.json`
+- Your local Claude setup must be able to load this git checkout as the active superpowers plugin/skills source
 
 ## Integration Test: subagent-driven-development
 
@@ -180,8 +180,8 @@ ls -lt "$SESSION_DIR"/*.jsonl | head -5
 
 **Solutions**:
 1. Ensure you're running FROM the superpowers directory: `cd /path/to/superpowers && tests/...`
-2. Check `~/.claude/settings.json` has `"superpowers@superpowers-dev": true` in `enabledPlugins`
-3. Verify skill exists in `skills/` directory
+2. Verify your local Claude configuration points at this git checkout for superpowers
+3. Verify the skill exists in `skills/` directory
 
 ### Permission Errors
 

@@ -34,41 +34,7 @@ Thanks!
 
 ## Installation
 
-**Note:** Installation differs by platform. Claude Code and Cursor have built-in plugin marketplaces. Codex and OpenCode require manual setup.
-
-### Claude Code Official Marketplace
-
-Superpowers is available via the [official Claude plugin marketplace](https://claude.com/plugins/superpowers)
-
-Install the plugin from Claude marketplace:
-
-```bash
-/plugin install superpowers@claude-plugins-official
-```
-
-### Claude Code (via Plugin Marketplace)
-
-In Claude Code, register the marketplace first:
-
-```bash
-/plugin marketplace add obra/superpowers-marketplace
-```
-
-Then install the plugin from this marketplace:
-
-```bash
-/plugin install superpowers@superpowers-marketplace
-```
-
-### Cursor (via Plugin Marketplace)
-
-In Cursor Agent chat, install from marketplace:
-
-```text
-/add-plugin superpowers
-```
-
-or search for "superpowers" in the plugin marketplace.
+This fork only documents git-based installs. It does not publish marketplace metadata or marketplace install paths.
 
 ### Codex
 
@@ -89,13 +55,6 @@ Fetch and follow instructions from https://raw.githubusercontent.com/kyrosle/sup
 ```
 
 **Detailed docs:** [docs/README.opencode.md](docs/README.opencode.md)
-
-### GitHub Copilot CLI
-
-```bash
-copilot plugin marketplace add obra/superpowers-marketplace
-copilot plugin install superpowers@superpowers-marketplace
-```
 
 ### Gemini CLI
 
@@ -192,4 +151,3 @@ For community support, questions, and sharing what you're building with Superpow
 
 - **Issues (this fork)**: https://github.com/kyrosle/superpowers/issues
 - **Original repo**: https://github.com/obra/superpowers
-- **Original marketplace**: https://github.com/obra/superpowers-marketplace
