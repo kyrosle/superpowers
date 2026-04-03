@@ -36,7 +36,23 @@ Thanks!
 
 ## Installation
 
-This fork only documents git-based installs. It does not publish marketplace metadata or marketplace install paths.
+This fork keeps git-based install docs as the primary path, and it also includes a local Claude Code dev marketplace manifest for testing this checkout.
+
+### Claude Code (local dev marketplace)
+
+For local Claude Code development, this repository ships `.claude-plugin/marketplace.json` so the checkout can be enabled as `superpowers@superpowers-dev`.
+
+Enable it in `~/.claude/settings.json`:
+
+```json
+{
+  "enabledPlugins": {
+    "superpowers@superpowers-dev": true
+  }
+}
+```
+
+This is for local testing of this git checkout, not a published fork-specific marketplace listing.
 
 ### Codex
 

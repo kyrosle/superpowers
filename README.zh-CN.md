@@ -5,7 +5,7 @@
 > 当前仓库是 [obra/superpowers](https://github.com/obra/superpowers) 的 fork。
 >
 > 这个 fork 的目标不是完全改写原项目，而是在保留核心工程流程的前提下，把工作流调得更轻：
-> - 只保留 git 分发，不维护 marketplace 分发
+> - 公开安装以 git 分发为主，同时保留 Claude 本地开发用的 marketplace 配置
 > - 不再强制 `worktree`、分支收尾流程、固定 git 仪式
 > - TDD 改为按需启用，不再默认强制
 > - brainstorming 默认在终端完成，只有用户明确要求时才启用可视化辅助
@@ -445,7 +445,7 @@ flowchart TD
 
 ## 安装与入口
 
-当前 fork 只保留 git 分发入口：
+当前 fork 的公开安装入口仍以 git 分发为主；另外保留了 Claude Code 本地开发用的 `.claude-plugin/marketplace.json`，便于把当前 checkout 作为 `superpowers@superpowers-dev` 启用。
 
 - 英文主说明：[`README.md`](README.md)
 - Codex 安装：[`docs/README.codex.md`](docs/README.codex.md)
